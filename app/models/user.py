@@ -1,7 +1,6 @@
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 from app.backend.db import Base
-from app.models.task import Task
 
 
 class User(Base):
@@ -13,5 +12,8 @@ class User(Base):
     age = Column(Integer, default=0)
     slug = Column(String, unique=True, index=True)
 
+def lazy():
+    from app.models.task import Task  # lazy импорт
+    return relationship('Task', back_populates='users')  # связь с таблицей Task
 
-tasks = relationship('Task', back_populates='users')  # связь с таблицей Task
+tasks = lazy()
