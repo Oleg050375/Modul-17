@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from routers import task, user  # импорт объектов роутеров
+from app.routers import task, user  # импорт объектов роутеров
 
 app = FastAPI()
 
